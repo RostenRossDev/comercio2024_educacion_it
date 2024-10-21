@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Online - Inicio</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-blue-600 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-white text-2xl font-bold">Tienda Online</a>
+            <div>
+                <a href="/products" class="text-white mr-4">Productos</a>
+                <a sec:authorize="!isAuthenticated()" href="/login" class="text-white mr-4">Iniciar sesión</a>
+                <a sec:authorize="!isAuthenticated()" href="/register" class="text-white mr-4">Registrarse</a>
+                <a sec:authorize="isAuthenticated()" href="/logout" class="text-white mr-4">Cerrar sesión</a>
+                <a sec:authorize="hasRole('ADMIN')" href="/admin" class="text-white">Admin</a>
+                <a sec:authorize="hasAnyRole('ADMIN', 'USER')" href="/admin" class="text-white">Admin 2</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto mt-8">
+        <h1 class="text-4xl font-bold mb-8">Bienvenido a nuestra Tienda Online</h1>
+        <p class="text-xl mb-4">Descubre nuestros productos increíbles y ofertas exclusivas.</p>
+        <a href="/products" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300">Ver productos</a>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-4 mt-16">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2023 Tienda Online. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>

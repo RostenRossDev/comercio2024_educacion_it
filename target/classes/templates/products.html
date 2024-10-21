@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-blue-600 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-white text-2xl font-bold">Tienda Online</a>
+            <div>
+                <a href="/products" class="text-white mr-4">Productos</a>
+                <a href="/cart" class="text-white mr-4">Carrito</a>
+                <a href="/login" class="text-white mr-4">Iniciar sesión</a>
+                <a href="/register" class="text-white">Registrarse</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto mt-8">
+        <h1 class="text-3xl font-bold mb-8">Nuestros Productos</h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div th:each="product : ${products}" class="bg-white rounded-lg shadow-md overflow-hidden">
+                <img th:src="@{product.imageUrl}" alt="Imagen del producto" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h2 th:text="${product.name}" class="text-xl font-bold mb-2"></h2>
+                    <p th:text="${product.description}" class="text-gray-600 mb-4"></p>
+                    <div class="flex justify-between items-center">
+                        <span th:text="${'$' + product.price}" class="text-lg font-bold"></span>
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">Añadir al carrito</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-4 mt-16">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2023 Tienda Online. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>

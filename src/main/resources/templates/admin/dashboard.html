@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-blue-600 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-white text-2xl font-bold">Tienda Online</a>
+            <div>
+                <a href="/products" class="text-white mr-4">Productos</a>
+                <a href="/logout" class="text-white">Cerrar sesión</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto mt-8">
+        <h1 class="text-3xl font-bold mb-8">Panel de Administración</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-bold mb-4">Usuarios</h2>
+                <ul>
+                    <li th:each="user : ${users}" class="mb-2">
+                        <span th:text="${user.username}" class="font-semibold"></span>
+                        <span th:text="${user.roles}" class="text-gray-600 ml-2"></span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-bold mb-4">Productos</h2>
+                <ul>
+                    <li th:each="product : ${products}" class="mb-2">
+                        <span th:text="${product.name}" class="font-semibold"></span>
+                        <span th:text="${'$' + product.price}" class="text-gray-600 ml-2"></span>
+                    </li>
+                </ul>
+                <a href="/products/add" class="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">Añadir Producto</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-4 mt-16">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2023 Tienda Online. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
